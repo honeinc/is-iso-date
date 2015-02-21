@@ -1,0 +1,28 @@
+{
+  "name": "is-iso-date",
+  "version": "0.0.1",
+  "description": "A simple utility to check if a string is an ISO-compliant date.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/honeinc/is-iso-date.git"
+  },
+  "keywords": [
+    "date",
+    "match",
+    "ISO",
+    "string",
+    "regexp",
+    "regular expression"
+  ],
+  "author": "Andy Burke <aburke@bitflood.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^3.4.0"
+  },
+  "dependencies": {
+  }
+}
