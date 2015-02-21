@@ -1,81 +1,25 @@
-# ViewManager [![Build Status](https://travis-ci.org/honeinc/viewmanager.svg?branch=master)](https://travis-ci.org/honeinc/viewmanager)
+# is-iso-date [![Build Status](https://travis-ci.org/honeinc/is-iso-date.svg?branch=master)](https://travis-ci.org/honeinc/is-iso-date)
 
-ViewManager is a small, simple library to maintain a set of views such that only one view is open at a time.
+is-iso-date is a simple utility to check if a string is an ISO-compliant date.
 
 ## Install
 
-    $ npm install viewmananger
+    $ npm install is-iso-date
 
 ## Usage
 
-ViewManager is intended to be used with [browserify](http://browserify.org).
-
 ```javascript
-var ViewManager = require( 'viewmanager' );
+var isISODate = require( 'is-iso-date' );
 
-var viewmanager = new ViewManager();
-
-viewmanager.add( 'foo', document.getElementById( 'foo' ) );
-viewmanager.add( 'bar', document.getElementById( 'bar' ) );
-viewmanager.add( 'yak', document.getElementById( 'yak' ) );
-
-// ensures the default show class 'show' is set on 'foo' and unset on the other managed views
-viewmanager.open( 'foo' );
-
-// will set the 'show' class on 'bar', and remove it from the other views
-viewmanager.open( 'bar' );
+console.log( isISODate( '2015-02-21T00:52:43.822Z' ) ); // true
+console.log( isISODate( '2015-02-21T00:52:43.822' ) );  // false
+console.log( isISODate( '2015-02-21T00:52:43Z' ) );     // true
+console.log( isISODate( '2015-02-21T00:52:43' ) );      // false
+console.log( isISODate( '2015-02-21T00:52Z' ) );        // true
+console.log( isISODate( '2015-02-21T00:52' ) );         // false
+console.log( isISODate( '2015-02-21T00Z' ) );           // false
 ```
-
-## Options
-
-### showClass
-
-```javascript
-var viewmanager = new ViewManager( {
-    showClass: 'blah' // defaults to 'show'
-} );
-```
-
-When open() is called on a view id, will ensure that the given showClass is added to the opened view and
-removed from all other managed views.
-
-### hideClass
-```javascript
-var viewmanager = new ViewManager( {
-    hideClass: 'blarg' // defaults to ''
-} );
-```
-
-When open() is called on a view id, will ensure that the given hideClass is removed from the opened view and
-added to all other managed views.
-
-## Methods
-
-### add( id, el )
-
-```javascript
-viewmanager.add( 'foo', document.getElementById( 'foo' ) );
-```
-
-Adds the given element to the view manager with the specified id.
-
-### remove( id )
-
-```javascript
-viewmanager.remove( 'foo' );
-```
-
-Removed the view associated with the id 'foo' from the view mananger.
-
-### open( id )
-
-```javascript
-viewmanager.open( 'foo' );
-```
-
-Opens the view specified by the id 'foo', esuring it has the proper show and hide classes applied and that
-all other managed views are appropriately hidden (again, with proper show/hide classes applied).
 
 ## Reference
 
-This is essentially a fork and simplification of [ymir](https://github.com/honeinc/ymir).
+This is basically just the regexp from this StackOverflow discussion wrapped in a tiny library with some tests: http://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
